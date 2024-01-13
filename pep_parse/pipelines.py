@@ -33,8 +33,7 @@ class PepParsePipeline:
         file_path = results_dir / file_name
         result = self.sum_status.most_common()
         with open(file_path, mode='w', encoding='utf-8') as csvfile:
-            status_file = csv.writer(csvfile, delimiter=' ', quotechar=' ',
-                                     quoting=csv.QUOTE_MINIMAL)
-            status_file.writerow('Статус, Количество\n')
+            status_file = csv.writer(csvfile, delimiter=' ', quotechar=' ')
+            status_file.writerow('Статус,Количество\n')
             status_file.writerows(result)
             status_file.writerow(f'Total, {sum(self.sum_status.values())}\n')

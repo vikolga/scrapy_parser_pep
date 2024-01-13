@@ -12,10 +12,10 @@ class PepSpider(scrapy.Spider):
             yield response.follow(link_pep, callback=self.parse_pep)
 
     def parse_pep(self, response):
-        _, number, _, *name = response.css('h1.page-title::text').get().split()
+        _, number, *_ = response.css('h1.page-title::text').get().split()
         data = {
             'number': number,
-            'name': ' '.join(name).strip(),
+            'name': response.css('h1.page-title::text').get(),
             'status':
             response.css('dt:contains("Status") + dd > abbr::text').get(),
         }
