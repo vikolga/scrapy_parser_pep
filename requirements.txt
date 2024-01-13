@@ -3,6 +3,7 @@ attrs==23.2.0
 Automat==22.10.0
 certifi==2023.11.17
 cffi==1.16.0
+chardet==3.0.4
 charset-normalizer==3.3.2
 colorama==0.4.6
 constantly==23.10.4
@@ -41,7 +42,7 @@ pyparsing==3.0.7
 pytest==6.2.5
 pytest-pythonpath==0.7.4
 queuelib==1.6.2
-requests==2.31.0
+requests==2.22.0
 requests-file==1.5.1
 Scrapy==2.11.0
 service-identity==21.1.0
@@ -52,7 +53,7 @@ toml==0.10.2
 Twisted==22.2.0
 twisted-iocpsupport==1.0.4
 typing_extensions==4.9.0
-urllib3==2.1.0
+urllib3==1.25.11
 w3lib==1.22.0
 zipp==3.7.0
 zope.interface==5.4.0
