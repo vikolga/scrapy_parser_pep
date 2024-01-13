@@ -26,14 +26,25 @@ class PepParsePipeline:
         return item
 
     def close_spider(self, spider):
+        FIELDS = ['Статус', 'Количество']
+        TOTAL = ['Total', sum(self.sum_status.values())]
         timestamp = dt.datetime.now().strftime(DATE_FORMAT)
         results_dir = BASE_DIR / 'results'
         results_dir.mkdir(exist_ok=True)
         file_name = f'status_summary_{timestamp}.csv'
         file_path = results_dir / file_name
         result = self.sum_status.most_common()
-        with open(file_path, mode='w', encoding='utf-8') as csvfile:
-            status_file = csv.writer(csvfile, delimiter=' ', quotechar=' ')
-            status_file.writerow('Статус,Количество\n')
+        with open(file_path, mode='w', newline='', encoding='utf-8') as csvfile:
+            status_file = csv.writer(csvfile,
+                                     doublequote=False,
+                                     delimiter=',',
+                                     quoting=csv.QUOTE_MINIMAL)
+            status_file.writerow(FIELDS)
             status_file.writerows(result)
-            status_file.writerow(f'Total, {sum(self.sum_status.values())}\n')
+            status_file.writerow(TOTAL)
+        # with open(file_path, mode='w', encoding='utf-8') as f:
+        #     # Записываем строки в csv-файл. Колонки разделяются запятой, без пробелов.
+        #     f.write('Статус,Количество\n')
+        #     for k, v in result:
+        #         f.write(result[k], result[v])
+        #     f.write(f'Total,{sum(self.sum_status.values())}\n')
